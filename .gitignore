@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Ignore IDE specific file
+.idea/
+*.idea
+*.idea/*
+
+# Ignore any json config file
+*.json
+
+# Ignore settings.py file
+settings.py
