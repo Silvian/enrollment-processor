@@ -26,21 +26,8 @@ def fix_date_formatting(date_string):
     if date_string:
         date = datetime.strptime(date_string, "%d/%m/%Y")
         return date.strftime("%Y-%m-%d")
+
     return date_string
-
-
-def data_policy_check(response):
-    if response:
-        return True
-
-    return False
-
-
-def baptised_check(response):
-    if response and response == "Yes":
-        return True
-
-    return False
 
 
 def process_data(data):
@@ -62,10 +49,10 @@ def process_data(data):
                 'address_locality': data['Locality'],
                 'address_city': data['City'],
                 'address_postcode': data['Postcode'],
-                'is_baptised': baptised_check(data['Are you baptised?']),
+                'is_baptised': lambda x: True if data['Are you baptised?'] == "Yes" else False,
                 'baptismal_date': fix_date_formatting(data['Baptismal date']),
                 'baptismal_place': data['Baptismal place'],
-                'gdpr': data_policy_check(data['Data policy']),
+                'gdpr': lambda x: True if data['Data policy'] else False,
             }
         )
         if response.status_code == 201:
