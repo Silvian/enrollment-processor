@@ -67,7 +67,6 @@ def process_data(data):
 def main():
     row = 2
     for record in wks.get_all_records():
-        print("Record: {}".format(record))
         if not record['Processed timestamp']:
             if record['Data policy']:
                 if process_data(record):
