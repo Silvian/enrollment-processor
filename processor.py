@@ -49,10 +49,10 @@ def process_data(data):
                 'address_locality': data['Locality'],
                 'address_city': data['City'],
                 'address_postcode': data['Postcode'],
-                'is_baptised': lambda x: True if data['Are you baptised?'] == "Yes" else False,
+                'is_baptised': True if data['Are you baptised?'] == "Yes" else False,
                 'baptismal_date': fix_date_formatting(data['Baptismal date']),
                 'baptismal_place': data['Baptismal place'],
-                'gdpr': lambda x: True if data['Data policy'] else False,
+                'gdpr': True if data['Data policy'] else False,
             }
         )
         if response.status_code == 201:
