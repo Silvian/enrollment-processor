@@ -5,29 +5,13 @@ import settings
 from datetime import datetime
 from oauth2client.service_account import ServiceAccountCredentials
 
+from utils import fix_date_formatting, fix_number_formatting
+
 scope = ['https://spreadsheets.google.com/feeds', 'https://www.googleapis.com/auth/drive']
 credentials = ServiceAccountCredentials.from_json_keyfile_name(settings.SECRETS_FILE, scope)
 gc = gspread.authorize(credentials)
 
 wks = gc.open_by_key(settings.DOCUMENT_KEY).sheet1
-
-
-def fix_number_formatting(number):
-    if number:
-        number = str(number)
-        if not number.startswith('+'):
-            if not number.startswith('0'):
-                return "0" + number
-
-    return number
-
-
-def fix_date_formatting(date_string):
-    if date_string:
-        date = datetime.strptime(date_string, "%d/%m/%Y")
-        return date.strftime("%Y-%m-%d")
-
-    return date_string
 
 
 def process_data(data):
