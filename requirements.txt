@@ -1,6 +1,6 @@
 attrs==20.3.0
 cachetools==4.2.1
-certifi==2020.12.5
+certifi==2022.12.7
 chardet==4.0.0
 google-auth==1.16.0
 google-auth-oauthlib==0.4.1
